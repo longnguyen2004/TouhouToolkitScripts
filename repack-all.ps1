@@ -3,7 +3,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Đường dẫn đến folder data")]
+        HelpMessage = "Path to data folder")]
     [ValidateNotNullOrEmpty()]
     [string]
     $Folder,
@@ -19,7 +19,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Đường dẫn đến file output. Bỏ trống = thxx repack.dat")]
+        HelpMessage = "Path to output file. Empty = thxx repack.dat")]
     [AllowEmptyString()]
     [string]
     $OutputFile

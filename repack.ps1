@@ -2,7 +2,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Định dạng file: dat, anm")]
+        HelpMessage = "File format: dat, anm")]
     [ValidateNotNullOrEmpty()]
     [string]
     $FileType,
@@ -16,7 +16,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "File text chứa những file cần repack")]
+        HelpMessage = "List of files to repack (anm spec file for anm)")]
     [ValidateNotNullOrEmpty()]
     [string]
     $ArchiveContent,
@@ -30,7 +30,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "File output")]
+        HelpMessage = "Output file")]
     [ValidateNotNullOrEmpty()]
     [string]
     $OutputFile
@@ -75,11 +75,11 @@ function repack {
     $prev_path = $Env:Path
     $thtk_dir = "$PSScriptRoot/thtk/bin"
     if (-not (Test-Path $thtk_dir)) {
-        Write-Error "Không tìm thấy thtk!" -ErrorAction Stop
+        Write-Error "Cannot find thtk!" -ErrorAction Stop
     }
     $Env:Path += ";$thtk_dir"
     if (-not (Test-Path $Folder)) {
-        Write-Error "Không tìm thấy $Folder!" -ErrorAction Stop 
+        Write-Error "Cannot find $Folder!" -ErrorAction Stop 
     }
     $previous_location = (Get-Location).Path
     if (-not (Test-Path $OutputFile)) {

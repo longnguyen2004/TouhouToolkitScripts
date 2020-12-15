@@ -3,7 +3,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Đường dẫn đến file data")]
+        HelpMessage = "Path to data file")]
     [ValidateNotNullOrEmpty()]
     [string]
     $File,
@@ -19,7 +19,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Vị trí unpack. Để trống = tạo thư mục mới")]
+        HelpMessage = "Unpack folder. Empty = create new folder")]
     [AllowEmptyString()]
     [string]
     $UnpackLocation
@@ -44,8 +44,8 @@ function resolve_conflict_between_anms {
     }
 }
 
-if (".dat" -ne [IO.Path]::GetExtension($File)) {
-    Write-Error "unpack-all chỉ có thể sử dụng với file .dat"
+if (".dat" -ne (Split-Path $File -Extension)) {
+    Write-Error "unpack-all can only be used with .dat files"
 }
 
 if ("" -eq $UnpackLocation) {

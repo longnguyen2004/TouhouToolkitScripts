@@ -3,14 +3,14 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Chế độ unpack: anm, dat")]
+        HelpMessage = "Unpack mode: anm, dat")]
     [ValidateNotNullOrEmpty()]
     [string]
     $UnpackMode,
     # Path to Touhou data file
     [Parameter(
         Mandatory = $true,
-        HelpMessage = "Đường dẫn đến file data")]
+        HelpMessage = "Path to data file")]
     [ValidateNotNullOrEmpty()]
     [string]
     $File,
@@ -26,7 +26,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Vị trí unpack. Để trống = giải nén vào cùng thư mục")]
+        HelpMessage = "Unpack location. Empty = current directory")]
     [AllowEmptyString()]
     [string]
     $UnpackLocation,
@@ -75,11 +75,11 @@ function unpack {
     $prev_path = $Env:Path
     $thtk_dir = "$PSScriptRoot\thtk\bin"
     if (-not (Test-Path $thtk_dir)) {
-        Write-Error "Không tìm thấy thtk!" -ErrorAction Stop
+        Write-Error "Cannot find thtk!" -ErrorAction Stop
     }
     $Env:Path += ";$thtk_dir"
     if (-not (Test-Path $File)) {
-        Write-Error "Không tìm thấy $File!" -ErrorAction Stop 
+        Write-Error "Cannot find $File!" -ErrorAction Stop 
     }
     $file_absolute = Resolve-Path $File
     $previous_location = (Get-Location).Path

@@ -3,7 +3,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Chế độ dump: ecl, msg, msg_ending, std")]
+        HelpMessage = "Dump mode: ecl, msg, msg_ending, std")]
     [ValidateNotNullOrEmpty()]
     [string]
     $DumpMode,
@@ -11,7 +11,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Đường dẫn đến file data")]
+        HelpMessage = "Path to file")]
     [ValidateNotNullOrEmpty()]
     [string]
     $File,
@@ -27,7 +27,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Tên file output. Để trống = {Tên file input}.txt")]
+        HelpMessage = "Output file. Empty = {Input file}.txt")]
     [AllowEmptyString()]
     [string]
     $OutputFile
@@ -48,7 +48,7 @@ function dump {
     $prev_path = $Env:Path
     $thtk_dir = "$PSScriptRoot\thtk\bin"
     if (-not (Test-Path $thtk_dir)) {
-        Write-Error "Không tìm thấy thtk!" -ErrorAction Stop
+        Write-Error "Cannot find thtk!" -ErrorAction Stop
     }
     $Env:Path += ";$thtk_dir"
     $DumpCommand = @{
@@ -58,7 +58,7 @@ function dump {
         "std"        = "thstd.exe -d {0} `"{1}`" `"{2}`""
     }
     if (-not (Test-Path $File)) {
-        Write-Error "Không tìm thấy $File!" -ErrorAction Stop 
+        Write-Error "Cannot find $File!" -ErrorAction Stop 
     }
     $eclmap_file_path = $eclmaps[$Version]
     $eclmap_name = Split-Path -LeafBase $eclmap_file_path

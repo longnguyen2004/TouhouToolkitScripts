@@ -2,14 +2,14 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "Định dạng file: ecl, msg, msg_ending, std")]
+        HelpMessage = "File format: ecl, msg, msg_ending, std")]
     [ValidateNotNullOrEmpty()]
     [string]
     $FileType,
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "File input")]
+        HelpMessage = "Input file")]
     [ValidateNotNullOrEmpty()]
     [string]
     $File,
@@ -23,7 +23,7 @@ param(
     [Parameter(
         Mandatory = $true,
         Position = 0,
-        HelpMessage = "File output")]
+        HelpMessage = "Output file")]
     [ValidateNotNullOrEmpty()]
     [string]
     $OutputFile
@@ -44,7 +44,7 @@ function undump {
     $prev_path = $Env:Path
     $thtk_dir = "$PSScriptRoot\thtk\bin"
     if (-not (Test-Path $thtk_dir)) {
-        Write-Error "Không tìm thấy thtk!" -ErrorAction Stop
+        Write-Error "Cannot find thtk!" -ErrorAction Stop
     }
     $UndumpCommand = @{
         "ecl"        = "thecl.exe -c {0} `"{1}`" `"{2}`" -m `"{3}`""
@@ -54,7 +54,7 @@ function undump {
     }
     $Env:Path += ";$thtk_dir"
     if (-not (Test-Path $File)) {
-        Write-Error "Không tìm thấy $File!" -ErrorAction Stop 
+        Write-Error "Cannot find $File!" -ErrorAction Stop 
     }
     $eclmap_file_path = $eclmaps[$Version]
     $eclmap_name = Split-Path -LeafBase $eclmap_file_path

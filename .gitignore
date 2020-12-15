@@ -1,0 +1,15 @@
+# Ignore everything...
+*
+
+# except for this file itself...
+!.gitignore
+
+# and script files...
+!*.ps1
+
+# and thtk/bin...
+!thtk/bin
+
+# and map folders
+!anmmap
+!eclmap
